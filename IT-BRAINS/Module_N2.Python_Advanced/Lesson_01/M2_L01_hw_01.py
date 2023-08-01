@@ -10,7 +10,7 @@ lk_list = ['banana', 'pizza', 'ninja', 'robot', 'zombie', 'cookie', 'monkey', 'g
 
 # Randomly select a word from the list
 lk_word = random.choice(lk_list)
-print(lk_word)
+# print(lk_word)
 
 # Convert the selected word into a list of characters for easier manipulation
 lk_word_list = list(lk_word)
