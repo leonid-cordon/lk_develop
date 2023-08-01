@@ -1,4 +1,4 @@
-# Module 2, Lecture 1, Homework 1
+# Module 2, Lecture 2, Homework 1
 # Handle an IndexError exception when an application tries to access the wrong index in a list.
 
 lk_list = [00, 11, 22, 33, 44, 55, 66, 77, 88]
