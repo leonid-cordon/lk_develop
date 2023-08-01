@@ -1,16 +1,21 @@
-# Module 2, Lecture 1, Homework 1
-
 import random
+import requests
 
-# This program is a word guessing game. The user has a limited number of attempts to guess a randomly selected word.
+# Set your Yandex.Translate API key here
+api_key = "YOUR_API_KEY_HERE"
 
-# List of words for the program to choose from
-lk_list = ['banana', 'pizza', 'ninja', 'robot', 'zombie', 'cookie', 'monkey', 'guitar', 'magic', 'dragon', 'rainbow',
-           'unicorn', 'cheese', 'disco', 'rocket', 'pirate', 'ninja', 'panda', 'sushi', 'smile']
+# Prompt the user to enter a word in Russian
+lk_word_russian = input("Enter a word in Russian: ")
 
-# Randomly select a word from the list
-lk_word = random.choice(lk_list)
-print(lk_word)
+# Translate the entered word into English using the Yandex.Translate API
+url = f"https://translate.yandex.net/api/v1.5/tr.json/translate?key={api_key}&text={lk_word_russian}&lang=ru-en"
+response = requests.get(url)
+if response.status_code == 200:
+    data = response.json()
+    lk_word = data["text"][0]
+else:
+    print("Translation failed")
+    exit()
 
 # Convert the selected word into a list of characters for easier manipulation
 lk_word_list = list(lk_word)
@@ -22,12 +27,11 @@ stars = "*" * len(lk_word)
 stars_list = list(stars)
 
 # Prompt the user to enter the number of attempts they would like to have to guess the word
-string1 = "Guess the word: " + stars
+string1 = f"Guess the word ({lk_word_russian}): {stars}"
 string2 = "Write the number of attempts: "
 max_length = max(len(string1), len(string2))
 
-print("Welcome!".rjust(max_length))
-print("Try to guess the word!".rjust(max_length))
+print("Welcome! Try to guess the word!".rjust(max_length))
 print(string1.rjust(max_length + len(lk_word)))
 
 try_count = 0
@@ -46,7 +50,7 @@ guessed_word = False
 attempt = 0
 while not guessed_word and attempt < try_count:
     # Prompt the user to enter either a single letter or an entire word
-    letter_or_word = input("Write a letter or word: ".rjust(max_length)).lower()
+    letter_or_word = input("Write a letter or word: ".lower().rjust(max_length))
 
     # If the user entered a single letter...
     if len(letter_or_word) == 1 and letter_or_word.isalpha():
