@@ -1,6 +1,6 @@
 # Module 2, Lecture 2, Homework 2
 
-# Create a function that accepts two numbers from the user йand handles an error (и обрабатывает ошибку)
+# Create a function that accepts two numbers from the user and handles an error (и обрабатывает ошибку)
 # if the input is not a number.
 
 
